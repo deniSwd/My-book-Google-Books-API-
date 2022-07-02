@@ -1,9 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from './slices/counterSlice';
+import myBookReducer from './slices/myBookSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    myBook: myBookReducer,
   },
 });
 
