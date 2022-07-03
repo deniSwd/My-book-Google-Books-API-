@@ -5,48 +5,46 @@ import {userAPI} from "../../API/MyBookApi";
 
 export type myBookState = {
   books: BooksType | null
+  category: string
+  sorting: string
 }
 
 const initialState: myBookState = {
   books: null,
+  category: '*',
+  sorting: 'relevance'
 };
-
-
-/*export const incrementAsync = createAsyncThunk(
-  'main/fetchCount',
-  async (amount: number) => {
-    const response = await fetchCount(amount);
-    // The value we return becomes the `fulfilled` action payload
-    return response.data;
-  }
-);*/
 
 export const myBookSlice = createSlice({
   name: 'myBook',
   initialState,
   reducers: {
-    /**
-     * Set books
-     */
-    setBooks: (state, action: PayloadAction<BooksType>) => {
+    addBooks: (state, action: PayloadAction<BooksType>) => {
       state.books = action.payload;
+    },
+    setCategory: (state, action:PayloadAction<string>) => {
+      state.category = action.payload
+    },
+    setSorting: (state, action:PayloadAction<string>) => {
+      state.sorting = action.payload
     }
   },
 });
 
-export const {setBooks} = myBookSlice.actions;
+export const {addBooks,setCategory,setSorting} = myBookSlice.actions
 
-export const selectBooks = (state: RootState) => state.myBook.books;
+export const selectBooks = (state: RootState) => state.myBook.books
+export const selectCategories = (state: RootState) => state.myBook.category
+export const selectSorting = (state: RootState) => state.myBook.sorting
 /**
  * Get books from googleBooks
  * @param category - book category
  * @param sorting - sorting parameter
  */
-export const getBooksFromGoogle = (category: string, sorting: string): AppThunk =>
+export const getBooksFromGoogle = (category: string, sorting: string, searchValue: string): AppThunk =>
     async (dispatch) => {
-      const currentBooks = await userAPI.getBooks(category, sorting)
-      dispatch (setBooks(currentBooks))
+      const currentBooks = await userAPI.getBooks(category, sorting, searchValue)
+      dispatch (addBooks(currentBooks))
     }
-
 
 export default myBookSlice.reducer;

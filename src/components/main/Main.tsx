@@ -1,6 +1,5 @@
 import React from 'react';
-import {useAppSelector, useAppDispatch} from '../../store/hooks';
-import styles from './Main.module.css';
+import {useAppSelector} from '../../store/hooks';
 import {selectBooks} from "../../store/slices/myBookSlice";
 
 export const Main = () => {
@@ -10,6 +9,7 @@ export const Main = () => {
 
   return (
     <div>
+      <div>{currentBooks?.totalItems}</div>
       {currentBooks?.items.map(b=>
         <div>
           {b.volumeInfo.title}
