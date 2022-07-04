@@ -8,12 +8,12 @@ export const Header: FC = () => {
 
   const dispatch = useAppDispatch()
 
- // Setting value from input field
+  // Setting value from input field
   const [searchValue, setLocalSearchValue] = useState<string>('')
   const searchValueChanged = (e: ChangeEvent<HTMLInputElement>) => {
     setLocalSearchValue(e.target.value)
   }
- // Searching books
+  // Searching books
   const onSearch = () => {
     dispatch(setSearchValue(searchValue))
     dispatch(getBooksFromGoogle())
@@ -24,7 +24,10 @@ export const Header: FC = () => {
     <header className={s.header}>
       <div className={s.headerTitle}>SEARCH for BOOKS</div>
       <div>
-        <input type="text" onChange={searchValueChanged} value={searchValue}/>
+        <input type="text"
+               onChange={searchValueChanged}
+               value={searchValue}
+               className={s.input}/>
         <button onClick={onSearch}>Search</button>
         <button onClick={() => setSearchValue('')}>Clear</button>
       </div>
