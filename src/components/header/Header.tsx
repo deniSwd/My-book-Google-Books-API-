@@ -1,33 +1,22 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, useState} from 'react';
 import s from './Header.module.css';
-import {
-  getBooksFromGoogle,
-  selectCategories,
-  selectSorting,
-  setCategory,
-  setSorting
-} from "../../store/slices/myBookSlice";
-import {useAppDispatch, useAppSelector} from "../../store/hooks";
+import {getBooksFromGoogle, setCategory, setSearchValue, setSorting} from "../../store/slices/myBookSlice";
+import {useAppDispatch} from "../../store/hooks";
 
 
 export const Header: FC = () => {
-  const categories = useAppSelector(selectCategories)
-  const sorting = useAppSelector(selectSorting)
+
   const dispatch = useAppDispatch()
 
-  // Displaying all books after first render
-  useEffect(() => {
-    dispatch(getBooksFromGoogle(categories, sorting, searchValue ))
-  }, [])
-
-  const[searchValue, setSearchValue] = useState<string>('')
-  const searchValueChanged = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value)
+ // Setting value from input field
+  const [searchValue, setLocalSearchValue] = useState<string>('')
+  const searchValueChanged = (e: ChangeEvent<HTMLInputElement>) => {
+    setLocalSearchValue(e.target.value)
   }
-
-  const onSearch=()=>{
-    dispatch(getBooksFromGoogle(categories, sorting, searchValue))
-    setSearchValue('')
+ // Searching books
+  const onSearch = () => {
+    dispatch(setSearchValue(searchValue))
+    dispatch(getBooksFromGoogle())
   }
 
 
@@ -37,10 +26,11 @@ export const Header: FC = () => {
       <div>
         <input type="text" onChange={searchValueChanged} value={searchValue}/>
         <button onClick={onSearch}>Search</button>
+        <button onClick={() => setSearchValue('')}>Clear</button>
       </div>
       <div>
-        <label htmlFor='categories' >Categories: </label>
-        <select name="categories" id='categories' onChange={(e)=>dispatch(setCategory(e.target.value))}>
+        <label htmlFor='categories'>Categories: </label>
+        <select name="categories" id='categories' onChange={(e) => dispatch(setCategory(e.target.value))}>
           <option value="*">all</option>
           <option value="art">art</option>
           <option value="biography">biography</option>
@@ -50,7 +40,7 @@ export const Header: FC = () => {
           <option value="poetry">poetry</option>
         </select>
         <label htmlFor='sorting'>Sorting by </label>
-        <select name='sorting' id='sorting' onChange={(e)=>dispatch(setSorting(e.target.value))}>
+        <select name='sorting' id='sorting' onChange={(e) => dispatch(setSorting(e.target.value))}>
           <option value="relevance"> relevance</option>
           <option value="newest">newest</option>
         </select>

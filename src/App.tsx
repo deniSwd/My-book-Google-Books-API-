@@ -6,6 +6,11 @@ import {useAppDispatch, useAppSelector} from "./store/hooks";
 import {getBooksFromGoogle, selectCategories, selectSorting} from './store/slices/myBookSlice';
 
 const App: FC = () => {
+  const dispatch = useAppDispatch()
+  // Displaying 30 books with default settings after first render
+  useEffect(() => {
+    dispatch(getBooksFromGoogle())
+  }, [dispatch])
 
   return (
     <div>

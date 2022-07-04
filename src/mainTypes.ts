@@ -4,9 +4,9 @@ export type ImageLinkType = {
 export type VolumeInfoType = {
   title: string
   authors: Array<string>
-  descriptions: string
+  description: string
   categories: Array<string>
-  imageLinks: ImageLinkType
+  imageLinks?: ImageLinkType
 }
 export type ItemType = {
   id: string

@@ -1,14 +1,22 @@
-import React from 'react';
-import {useAppSelector, useAppDispatch} from '../../store/hooks';
-import styles from './Book.module.css';
+import React, {FC} from 'react';
+import {ItemType} from "../../mainTypes";
+import s from '../bookPage/Book.module.css'
+import bookImg from '../../assets/smallbook.jpg'
 
-export const Book = () => {
+type BookPropsType = {
+  book: ItemType
+}
+
+export const Book: FC<BookPropsType> = ({book}) => {
   /* const count = useAppSelector(selectCount);
    const dispatch = useAppDispatch();*/
 
   return (
-    <div>
-
+    <div className={s.bookBox}>
+      <img src={book.volumeInfo.imageLinks?.thumbnail ?? bookImg} alt=''/>
+      <h4>
+        {book.volumeInfo.title}
+      </h4>
     </div>
-  );
+  )
 }

@@ -6,8 +6,10 @@ const instance = axios.create({
 })
 
 export const userAPI = {
-  async getBooks(category: string, sorting: string, searchValue: string): Promise<BooksType> {
-    return instance.get<BooksType>(`?q=${searchValue}+subject:${category}&orderBy=${sorting}&maxResults=30`)
+  async getBooks(category: string, sorting: string, searchValue: string, pageIndex: number): Promise<BooksType> {
+    const startIndex = pageIndex * 30
+    return instance.get<BooksType>
+    (`?q=${searchValue}+subject:${category}&orderBy=${sorting}&startIndex=${startIndex}&maxResults=30&key=AIzaSyBrHg8eoJcWhtgdFxzDxx83Ltih5zuW67w`)
       .then(res => res.data)
   },
 }
