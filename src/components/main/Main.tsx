@@ -2,7 +2,7 @@ import React from 'react';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {getBooksFromGoogle, selectBooks, setPageIndex} from "../../store/slices/myBookSlice";
 import {Book} from "../bookPage/Book";
-import s from '../main/Main.module.css'
+import s from './Main.module.scss'
 
 export const Main = () => {
   const dispatch = useAppDispatch()
@@ -14,14 +14,14 @@ export const Main = () => {
   }
 
   return (
-    <div>
-      <div>{currentBooks?.totalItems}</div>
+    <div className={s.main}>
+      <div>Found {currentBooks?.totalItems} results</div>
       <div className={s.booksField}>
       {currentBooks?.items.map((book, i) =>
         <Book book={book} key={i}/>
       )}
       </div>
-      <div onClick={onLoadMore}>Load more...</div>
+      <div onClick={onLoadMore} className={s.loadButton}>Load more...</div>
     </div>
   );
 }

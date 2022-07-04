@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {ItemType} from "../../mainTypes";
-import s from '../bookPage/Book.module.css'
+import s from './Book.module.scss'
 import bookImg from '../../assets/smallbook.jpg'
 
 type BookPropsType = {

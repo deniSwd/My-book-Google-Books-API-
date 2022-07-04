@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC, useState} from 'react';
-import s from './Header.module.css';
+import s from './Header.module.scss';
 import {getBooksFromGoogle, setCategory, setSearchValue, setSorting} from "../../store/slices/myBookSlice";
 import {useAppDispatch} from "../../store/hooks";
 
@@ -22,7 +22,7 @@ export const Header: FC = () => {
 
   return (
     <header className={s.header}>
-      <h1>SEARCH for BOOKS</h1>
+      <div className={s.headerTitle}>SEARCH for BOOKS</div>
       <div>
         <input type="text" onChange={searchValueChanged} value={searchValue}/>
         <button onClick={onSearch}>Search</button>
