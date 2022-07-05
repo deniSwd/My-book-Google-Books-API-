@@ -3,12 +3,19 @@
   flex-direction: column;
   align-items: center;
 
+  .foundResults {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 20px 0;
+  }
+
   .booksField {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
   }
-  .loadButton{
+
+  .loadButton {
     width: 200px;
     height: 60px;
     margin: 30px;
@@ -16,11 +23,21 @@
     font-weight: bolder;
     line-height: 60px;
     text-align: center;
-    color: white;
+    color: black;
+    border: 2px solid white;
     border-radius: 20px;
-    background-image: linear-gradient(90deg, #e37b5f,#96e5fd);;
+    outline: 3px solid black;
+    background-image: linear-gradient(to right, #F2994A 0%, #F2C94C 51%, #F2994A 100%);
     cursor: pointer;
     user-select: none;
+    transition: 0.5s;
+    background-size: 200% auto;
+
+    &:hover {
+      background-position: right center; /* change the direction of the change here */
+      color: #fff;
+      text-decoration: none;
+    }
   }
 }
 

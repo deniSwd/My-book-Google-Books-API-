@@ -16,7 +16,7 @@ export const Main = () => {
 
   return (
     <div className={s.main}>
-      <div>Found {currentBooks?.totalItems} results</div>
+      <div className={s.foundResults}>Found {currentBooks?.totalItems} results</div>
       <div className={s.booksField}>
         {currentBooks?.items.map((book, i) =>
           <div>
@@ -26,7 +26,7 @@ export const Main = () => {
           </div>
         )}
       </div>
-      <div onClick={onLoadMore} className={s.loadButton}>Load more...</div>
+      <div onClick={onLoadMore} className={s.loadButton}>load more</div>
     </div>
   );
 }
