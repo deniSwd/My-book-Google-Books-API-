@@ -3,6 +3,7 @@ import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {getBooksFromGoogle, selectBooks, setPageIndex} from "../../store/slices/myBookSlice";
 import {Book} from "../bookPage/Book";
 import s from './Main.module.scss'
+import {NavLink} from "react-router-dom";
 
 export const Main = () => {
   const dispatch = useAppDispatch()
@@ -17,9 +18,13 @@ export const Main = () => {
     <div className={s.main}>
       <div>Found {currentBooks?.totalItems} results</div>
       <div className={s.booksField}>
-      {currentBooks?.items.map((book, i) =>
-        <Book book={book} key={i}/>
-      )}
+        {currentBooks?.items.map((book, i) =>
+          <div>
+            <NavLink to={`/${book.id}`}>
+              <Book book={book} key={i}/>
+            </NavLink>
+          </div>
+        )}
       </div>
       <div onClick={onLoadMore} className={s.loadButton}>Load more...</div>
     </div>

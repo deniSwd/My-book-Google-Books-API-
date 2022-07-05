@@ -1,9 +1,9 @@
 import React, {FC, useEffect} from 'react'
 import './App.css'
 import {Header} from "./components/header/Header"
-import {Main} from "./components/main/Main"
-import {useAppDispatch, useAppSelector} from "./store/hooks";
-import {getBooksFromGoogle, selectCategories, selectSorting} from './store/slices/myBookSlice';
+import {useAppDispatch} from "./store/hooks";
+import {getBooksFromGoogle} from './store/slices/myBookSlice';
+import {RoutePage} from "./components/RoutePage";
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
@@ -15,7 +15,7 @@ const App: FC = () => {
   return (
     <div>
       <Header/>
-      <Main/>
+      <RoutePage/>
     </div>
   );
 }

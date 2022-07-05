@@ -8,8 +8,6 @@ type BookPropsType = {
 }
 
 export const Book: FC<BookPropsType> = ({book}) => {
-  /* const count = useAppSelector(selectCount);
-   const dispatch = useAppDispatch();*/
 
   return (
     <div className={s.bookBox}>
