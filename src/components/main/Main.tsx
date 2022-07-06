@@ -1,7 +1,7 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {getBooksFromGoogle, selectBooks, setPageIndex} from "../../store/slices/myBookSlice";
-import {Book} from "../bookPage/Book";
+import {Book} from "../bookBox/Book";
 import s from './Main.module.scss'
 import {NavLink} from "react-router-dom";
 

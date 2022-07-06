@@ -1,4 +1,111 @@
-.selectedBook{
+.selectedBook {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .bookCover {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25vw;
+    min-width: 320px;
+    height: 480px;
+    margin: 2vw;
+    box-shadow: 1px 1px 20px rgba(211, 211, 211, 0.68);
+    border-radius: 20px;
+
+    img {
+      width: 70%;
+      height: 80%;
+      object-fit: cover;
+      transition: 1s ease;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .bookInfo {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 65vw;
+    min-width: 320px;
+
+    .categories {
+      height: 20px;
+      font-size: 18px;
+      line-height: 20px;
+      margin: 40px 0 20px;
+      color: gray;
+
+    }
+
+    .title {
+      height: 80px;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .authors {
+      display: grid;
+      width: 35%;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px 10px;
+      height: 20px;
+      font-size: 18px;
+      line-height: 20px;
+      color: gray;
+      margin-bottom: 80px;
+    }
+
+    .description {
+      box-sizing: border-box;
+      padding: 20px;
+      min-width: 320px;
+      min-height: 150px;
+      box-shadow: 1px 1px 20px rgba(211, 211, 211, 0.68);
+      border-radius: 20px;
+      font-size: 14px;
+      text-indent: 10px;
+      margin-right: 2vw
+    }
+
+    .buttonSpace {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 2vw;
+
+      .backButton {
+        text-decoration: none;
+        box-sizing: border-box;
+        width: 150px;
+        height: 50px;
+        margin: 20px 0 40px;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 40px;
+        text-align: center;
+        color: black;
+        border: 5px solid white;
+        border-radius: 20px;
+        outline: 3px solid black;
+        background-image: linear-gradient(to right, #F2994A 0%, #F2C94C 51%, #F2994A 100%);
+        cursor: pointer;
+        user-select: none;
+        transition: 0.5s;
+        background-size: 200% auto;
+
+        &:hover {
+          background-position: right center;
+        }
+      }
+    }
+  }
 }

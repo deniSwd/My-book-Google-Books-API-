@@ -21,9 +21,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: 1s ease;
       &:hover{
         transform: scale(1.2);
-        transition: 1s ease;
       }
     }
   }
@@ -53,6 +53,8 @@
 
     .authors {
       color: gray;
+      max-height: 80px;
+      overflow: hidden;
     }
   }
 

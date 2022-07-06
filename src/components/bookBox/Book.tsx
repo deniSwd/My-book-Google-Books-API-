@@ -22,8 +22,8 @@ export const Book: FC<BookPropsType> = ({book}) => {
           {book.volumeInfo.title}
         </div>
         <div className={s.authors}>
-          {book.volumeInfo.authors?.map((a,i)=>
-            <div className={s.author} key={i}>{a}</div>) ?? ''}
+          {book.volumeInfo.authors?.map((author,i)=>
+            <div className={s.author} key={i}>{author}</div>) ?? ''}
         </div>
       </div>
     </div>

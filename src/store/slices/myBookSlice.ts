@@ -49,14 +49,8 @@ export const myBookSlice = createSlice({
 export const {addBooks, setCategory, setSorting, setSearchValue, setPageIndex} = myBookSlice.actions
 
 export const selectBooks = (state: RootState) => state.myBook.books
-export const selectCategories = (state: RootState) => state.myBook.category
-export const selectSorting = (state: RootState) => state.myBook.sorting
-/**
- * Get books from googleBooks
- * @param category - book category
- * @param sorting - sorting parameter
- * @param searchValue - value from input
- */
+
+//Get books from googleBooks
 export const getBooksFromGoogle = (): AppThunk =>
   async (dispatch, getState) => {
     const category: string = getState().myBook.category
