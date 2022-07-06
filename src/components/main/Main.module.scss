@@ -13,6 +13,10 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    .link a {
+      text-decoration: none;
+      color: black;
+    }
   }
 
   .loadButton {
@@ -34,7 +38,7 @@
     background-size: 200% auto;
 
     &:hover {
-      background-position: right center; /* change the direction of the change here */
+      background-position: right center;
       color: #fff;
       text-decoration: none;
     }

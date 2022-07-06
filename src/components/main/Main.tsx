@@ -19,7 +19,7 @@ export const Main = () => {
       <div className={s.foundResults}>Found {currentBooks?.totalItems} results</div>
       <div className={s.booksField}>
         {currentBooks?.items.map((book, i) =>
-          <div>
+          <div className={s.link}>
             <NavLink to={`/${book.id}`}>
               <Book book={book} key={i}/>
             </NavLink>
