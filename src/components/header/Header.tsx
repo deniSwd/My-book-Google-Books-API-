@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, useState} from 'react'
+import React, {ChangeEvent, FC, useState,KeyboardEvent} from 'react'
 import s from './Header.module.scss'
 import {getBooksFromGoogle, setCategory, setSearchValue, setSorting} from "../../store/slices/myBookSlice"
 import {useAppDispatch} from "../../store/hooks"
@@ -20,6 +20,11 @@ export const Header: FC = () => {
     dispatch(getBooksFromGoogle())
   }
 
+  const handleKeyDown = (ev: KeyboardEvent<HTMLElement>) => {
+    if (ev.key === 'Enter' && searchValue !== '') {
+     onSearch()
+    }
+  }
 
   return (
     <header className={s.header}>
@@ -27,6 +32,7 @@ export const Header: FC = () => {
       <div className={s.inputBox}>
         <input type="text"
                onChange={searchValueChanged}
+               onKeyDown={handleKeyDown}
                value={searchValue}
                className={s.input}/>
         <div className={s.inputButton}>
