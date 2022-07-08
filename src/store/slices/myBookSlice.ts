@@ -9,6 +9,7 @@ export type myBookState = {
   sorting: string
   searchValue: string
   pageIndex: number
+  errorMessage: string
 }
 
 const initialState: myBookState = {
@@ -17,6 +18,7 @@ const initialState: myBookState = {
   sorting: 'relevance',
   searchValue: '',
   pageIndex: 0,
+  errorMessage: '',
 };
 
 export const myBookSlice = createSlice({
@@ -42,13 +44,17 @@ export const myBookSlice = createSlice({
     },
     setPageIndex: (state) => {
       state.pageIndex += 1
+    },
+    setError: (state, action: PayloadAction<string>) => {
+      state.errorMessage = action.payload
     }
   },
 });
 
-export const {addBooks, setCategory, setSorting, setSearchValue, setPageIndex} = myBookSlice.actions
+export const {addBooks, setCategory, setSorting, setSearchValue, setPageIndex, setError} = myBookSlice.actions
 
 export const selectBooks = (state: RootState) => state.myBook.books
+export const selectError = (state: RootState) => state.myBook.errorMessage
 
 //Get books from googleBooks
 export const getBooksFromGoogle = (): AppThunk =>
@@ -57,8 +63,12 @@ export const getBooksFromGoogle = (): AppThunk =>
     const sorting: string = getState().myBook.sorting
     const searchValue: string = getState().myBook.searchValue
     const pageIndex: number = getState().myBook.pageIndex
-    const currentBooks = await userAPI.getBooks(category, sorting, searchValue, pageIndex)
-    dispatch(addBooks(currentBooks))
+    try {
+      const currentBooks = await userAPI.getBooks(category, sorting, searchValue, pageIndex)
+      dispatch(addBooks(currentBooks))
+    } catch (error: any) {
+      dispatch(setError(error.message))
+    }
   }
 
 export default myBookSlice.reducer;
