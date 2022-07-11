@@ -6,11 +6,13 @@ import {selectBooks} from "../../store/slices/myBookSlice";
 import bookImg from "../../assets/smallbook.jpg";
 
 export const SelectedBook: FC = () => {
-
+  // getting id book value from Url
   const {bookId} = useParams()
+  // getting current books list from our reducer
   const currentBooks = useAppSelector(selectBooks)
-  // Finding selected book
+  // Finding selected book from current books
   const selectedBook = currentBooks?.items.find(b => bookId === b.id)
+  // book with information about her
   const book = selectedBook?.volumeInfo
 
   return (

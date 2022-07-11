@@ -17,6 +17,7 @@ const App: FC = () => {
   return (
     <div>
       <Header/>
+      {/*if we have a message about error displaying error page, else main content*/}
       {errorMessage.length > 0 ? <Error message={errorMessage}/> : <RoutePage/>}
     </div>
   );

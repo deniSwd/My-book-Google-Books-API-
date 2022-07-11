@@ -3,6 +3,7 @@ import {ItemType} from "../../mainTypes";
 import s from './Book.module.scss'
 import bookImg from '../../assets/smallbook.jpg'
 
+//our selected book in props
 type BookPropsType = {
   book: ItemType
 }

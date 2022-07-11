@@ -1,6 +1,7 @@
 import {FC} from "react";
 import s from '../error/error.module.scss'
 
+// our error message in props
 type ErrorProps = {
   message: string
 }
