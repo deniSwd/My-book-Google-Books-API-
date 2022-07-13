@@ -33,12 +33,14 @@ export const Main = () => {
             </div>
           )}
       </div>
-      <div onClick={onLoadMore}
-           className={s.loadButton}>{
-        preloader
-          ? <img src={buttonPreloader} alt='loading...'/>
-          : 'load more'
-      }</div>
+      {currentBooks?.items.length !== currentBooks?.totalItems &&
+          <div onClick={onLoadMore}
+               className={s.loadButton}>{
+            preloader
+              ? <img src={buttonPreloader} alt='loading...'/>
+              : 'load more'
+          }</div>
+      }
     </div>
-  );
+  )
 }

@@ -1,9 +1,10 @@
-import React, {ChangeEvent, FC, useState,KeyboardEvent} from 'react'
+import React, {ChangeEvent, FC, useState, KeyboardEvent} from 'react'
 import s from './Header.module.scss'
 import {getBooksFromGoogle, setCategory, setSearchValue, setSorting} from "../../store/slices/myBookSlice"
 import {useAppDispatch} from "../../store/hooks"
 import searchSmall from '../../assets/searchSmall.png'
 import clear from '../../assets/clear.png'
+import {useNavigate} from "react-router-dom";
 
 export const Header: FC = () => {
 
@@ -14,15 +15,17 @@ export const Header: FC = () => {
   const searchValueChanged = (e: ChangeEvent<HTMLInputElement>) => {
     setLocalSearchValue(e.target.value)
   }
+  const nav = useNavigate()
   // Searching books
   const onSearch = () => {
+    nav('/')
     dispatch(setSearchValue(searchValue))
     dispatch(getBooksFromGoogle())
   }
 
   const handleKeyDown = (ev: KeyboardEvent<HTMLElement>) => {
     if (ev.key === 'Enter' && searchValue !== '') {
-     onSearch()
+      onSearch()
     }
   }
 
@@ -46,7 +49,7 @@ export const Header: FC = () => {
       </div>
       <div className={s.selectsWrapper}>
         <div className={s.selectField}>
-          <div>Categories: </div>
+          <div>Categories:</div>
           <select className={s.select} name="categories" id='categories'
                   onChange={(e) => dispatch(setCategory(e.target.value))}>
             <option value="*">all</option>
@@ -59,8 +62,9 @@ export const Header: FC = () => {
           </select>
         </div>
         <div className={s.selectField}>
-          <div>Sorting by </div>
-          <select className={s.select} name='sorting' id='sorting' onChange={(e) => dispatch(setSorting(e.target.value))}>
+          <div>Sorting by</div>
+          <select className={s.select} name='sorting' id='sorting'
+                  onChange={(e) => dispatch(setSorting(e.target.value))}>
             <option value="relevance"> relevance</option>
             <option value="newest">newest</option>
           </select>

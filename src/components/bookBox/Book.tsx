@@ -17,13 +17,13 @@ export const Book: FC<BookPropsType> = ({book}) => {
       </div>
       <div className={s.bookInfo}>
         <div className={s.categories}>
-          { book.volumeInfo.categories?.[0] ?? ''}
+          {book.volumeInfo.categories?.[0] ?? ''}
         </div>
         <div className={s.title}>
           {book.volumeInfo.title}
         </div>
         <div className={s.authors}>
-          {book.volumeInfo.authors?.map((author,i)=>
+          {book.volumeInfo.authors?.map((author, i) =>
             <div className={s.author} key={i}>{author}</div>) ?? ''}
         </div>
       </div>
